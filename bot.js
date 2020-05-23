@@ -8,9 +8,8 @@ client.on('ready', () => {
 })
 
 client.on('message', (msg) => {
-    console.log(msg.content)
+    if(msg.content.charAt(0) != '-') return
     let msgSplit = msg.content.split()
-    if(msgSplit[0].split('')[0] != '-') return
     msg.channel.send('Command received.')
 })
 
