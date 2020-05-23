@@ -1,4 +1,4 @@
-//const config = require('./config.json')
+const config = require('./config.json')
 
 const Discord = require('discord.js')
 const client = new Discord.Client()
@@ -32,5 +32,4 @@ client.on('message', (msg) => {
     msg.channel.send('Command received.')
 })
 
-//client.login(config.discordKey)
-client.login('NzEzODE1MzcwNzMzMTkxMjYw.Xslmqw.ga7-8rO2iCMdSUmCyIjVuyLGN8Q');
+client.login(config.discordKey)
