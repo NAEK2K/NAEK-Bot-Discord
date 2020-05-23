@@ -1,1 +1,1 @@
-# Nick-Bot-Discord
+# NAEK-Bot-Discord
