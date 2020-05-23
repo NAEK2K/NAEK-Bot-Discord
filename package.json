@@ -1,0 +1,23 @@
+{
+  "name": "naek-bot-discord",
+  "version": "1.0.0",
+  "description": "Built with NodeJS, LowDB, and DiscordJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NAEK2K/NAEK-Bot-Discord.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NAEK2K/NAEK-Bot-Discord/issues"
+  },
+  "homepage": "https://github.com/NAEK2K/NAEK-Bot-Discord#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "lowdb": "^1.0.0"
+  }
+}
