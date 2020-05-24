@@ -19,7 +19,9 @@
       "goodbyeChannel": "",
       "goodbyeMessage": "",
       "goodbyeEnable": 1,
-      "joinableRanks": [],
+      "joinableRanks": [
+        "test rank"
+      ],
       "adminRanks": []
     }
   ]
