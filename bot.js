@@ -75,12 +75,12 @@ client.on('message', (msg) => {
                 }
             })
             if(!rankFound) {
-                msg.channel.send("That rank does not exist.")
+                msg.channel.send(`That rank does not exist.`)
                 return
             }
             let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
             if(joinableRanks.map((x) => x[0]).includes(rankData[0])) {
-                msg.channel.send("This rank is already joinable.")
+                msg.channel.send(`This rank is already joinable. [${rankData[0]}]`)
             } else {
                 joinableRanks.push(rankData)
                 db.get('guilds').find({id: msg.guild.id}).assign({joinableRanks}).write()
@@ -88,7 +88,7 @@ client.on('message', (msg) => {
             }
         }).catch((e) => {
             console.log(e)
-            msg.channel.send("That rank does not exist.")
+            msg.channel.send(`That rank does not exist.`)
         })
     }
     if(msgSplit[0] == '-join-rank') {
