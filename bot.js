@@ -22,9 +22,7 @@ client.on('message', (msg) => {
     let msgSplit = msg.content.split(' ')
     console.log(msgSplit)
     if(msgSplit[0] == '-website') {
-        let testMessage = "Hey <#713942346760323152>"
         msg.channel.send("Developer's Site: https://naek.ca")
-        msg.channel.send(testMessage)
     }
     // welcome settings
     if(msgSplit[0] == '-set-welcome-channel') { // set channel
