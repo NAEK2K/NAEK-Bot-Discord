@@ -97,6 +97,29 @@ client.on('message', (msg) => {
             return
         }
         let rankName = msg.content.substr(11)
+        let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
+        if(joinableRanks.map((x) => x[0]).includes(rankName)) {
+            let rankID = joinableRanks[joinableRanks.map((x) => x[0]).indexOf(rankName)][1]
+            msg.member.roles.add(rankID)
+            msg.channel.send("Rank added.")
+        }
+    }
+    if(msgSplit[0] == '-leave-rank') {
+        if(msgSplit[1] == undefined) {
+            msg.channel.send("Please supply a parameter.")
+            return
+        }
+        let rankName = msg.content.substr(12)
+        let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
+        if(joinableRanks.map((x) => x[0]).includes(rankName)) {
+            let rankID = joinableRanks[joinableRanks.map((x) => x[0]).indexOf(rankName)][1]
+            msg.member.roles.remove(rankID)
+            msg.channel.send("Rank removed.")
+        }
+    }
+    if(msgSplit[0] == '-joinable-ranks') {
+        let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
+        msg.channel.send(`**Joinable Ranks**\n${joinableRanks.map((x) => x[0]+'\n').toString().replace(',', '')}` || 'No ranks are joinable.')
     }
     // development functions only
     if(msgSplit[0] == '-db-refresh') {
