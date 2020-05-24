@@ -3,9 +3,9 @@
 Built with NodeJS, LowDB, and DiscordJS.
 
 Features:
-- Greetings / Goodbyes (COMPLETE)
-- Rank Management (NOT COMPLETE)
-- Usable across multiple servers (WHAT DO YOU CONSIDER COMPLETE)
+- Greetings / Goodbyes
+- Rank Management
+- Usable across multiple servers
 
 Commands:
 - `-website`: displays developer's website
