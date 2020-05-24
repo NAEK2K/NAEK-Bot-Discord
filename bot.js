@@ -166,7 +166,7 @@ client.on('guildMemberRemove', (member) => {
 
 // on guild join
 client.on('guildCreate', (guild) => {
-    db.get('guilds').push({id: guild.id, welcomeChannel: '', welcomeMessage: '', welcomeEnable: 1, goodbyeChannel: '', goodbyeMessage: '', goodbyeEnable: 1, joinableRanks: [], adminRanks: []}).write()
+    db.get('guilds').push({id: msg.guild.id, welcomeChannel: '', welcomeMessage: 'Hello <@user>', welcomeEnable: 0, goodbyeChannel: '', goodbyeMessage: 'Goodbye <@user>', goodbyeEnable: 0, joinableRanks: [], adminRanks: []}).write()
 })
 
 client.login(config.discordKey)
