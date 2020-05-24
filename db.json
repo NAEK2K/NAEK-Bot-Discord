@@ -1,17 +1,6 @@
 {
   "guilds": [
     {
-      "id": "713815262956224594",
-      "welcomeChannel": "713942346760323152",
-      "welcomeEnable": 1,
-      "goodbyeChannel": "713952897506738227",
-      "goodbyeEnable": 0,
-      "joinableRanks": [],
-      "adminRanks": [],
-      "welcomeMessage": "HEY <@user>, HOW ARE YOU DOING",
-      "goodbyeMessage": "WE WONT MISS YOU <@user>"
-    },
-    {
       "id": "712800738472099862",
       "welcomeChannel": "713949886357438566",
       "welcomeEnable": 1,
@@ -21,6 +10,17 @@
       "adminRanks": [],
       "welcomeMessage": "i can ping now hello <@user>",
       "goodbyeMessage": "byebye <@user> we wont miss u"
+    },
+    {
+      "id": "713815262956224594",
+      "welcomeChannel": "",
+      "welcomeMessage": "",
+      "welcomeEnable": 1,
+      "goodbyeChannel": "",
+      "goodbyeMessage": "",
+      "goodbyeEnable": 1,
+      "joinableRanks": [],
+      "adminRanks": []
     }
   ]
 }
