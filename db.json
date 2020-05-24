@@ -2,14 +2,19 @@
   "guilds": [
     {
       "id": "712800738472099862",
-      "welcomeChannel": "713949886357438566",
+      "welcomeChannel": "",
+      "welcomeMessage": "",
       "welcomeEnable": 1,
-      "goodbyeChannel": "713953219696525322",
-      "goodbyeEnable": 0,
-      "joinableRanks": [],
-      "adminRanks": [],
-      "welcomeMessage": "i can ping now hello <@user>",
-      "goodbyeMessage": "byebye <@user> we wont miss u"
+      "goodbyeChannel": "",
+      "goodbyeMessage": "",
+      "goodbyeEnable": 1,
+      "joinableRanks": [
+        [
+          "💪gym",
+          "713021427032522793"
+        ]
+      ],
+      "adminRanks": []
     },
     {
       "id": "713815262956224594",
@@ -19,9 +24,7 @@
       "goodbyeChannel": "",
       "goodbyeMessage": "",
       "goodbyeEnable": 1,
-      "joinableRanks": [
-        "test rank"
-      ],
+      "joinableRanks": [],
       "adminRanks": []
     }
   ]

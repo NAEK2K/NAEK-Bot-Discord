@@ -91,6 +91,19 @@ client.on('message', (msg) => {
             msg.channel.send(`That rank does not exist.`)
         })
     }
+    if(msgSplit[0] == '-remove-joinable-rank') { // add rank to be joinable
+        if(msgSplit[1] == undefined) {
+            msg.channel.send("Please supply a parameter.")
+            return
+        }
+        let rankName = msg.content.substr(22)
+        let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
+        if(joinableRanks.map((x) => x[0]).includes(rankName)) {
+            joinableRanks.pop(joinableRanks.map((x) => x[0]).indexOf(rankName))
+            db.get('guilds').find({id: msg.guild.id}).assign({joinableRanks}).write()
+            msg.channel.send(`Rank has been removed. [${rankName}]`)
+        }
+    }
     if(msgSplit[0] == '-join-rank') {
         if(msgSplit[1] == undefined) {
             msg.channel.send("Please supply a parameter.")
