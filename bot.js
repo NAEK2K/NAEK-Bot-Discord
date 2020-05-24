@@ -59,13 +59,18 @@ client.on('message', (msg) => {
         }
     }
     // rank management
-    if(msgSplit[0] == '-add-joinable-rank') {
-        let rankName = msg.content.substr(19)
+    if(msgSplit[0] == '-add-joinable-rank') { // add rank to be joinable
+        if(msgSplit[1] == undefined) {
+            msg.channel.send("Please supply a parameter.")
+            return
+        }
+        let rankData = msg.content.substr(19)
         msg.guild.roles.fetch().then((r) => {
             let rankFound = false
             r.cache.forEach((item) => { // loop through role cache to find role
-                if(item.name == rankName) {
+                if(item.name == rankData) {
                     rankFound = true
+                    rankData = [item.name, item.id]
                     return
                 }
             })
@@ -74,17 +79,24 @@ client.on('message', (msg) => {
                 return
             }
             let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
-            if(joinableRanks.includes(rankName)) {
+            if(joinableRanks.map((x) => x[0]).includes(rankData[0])) {
                 msg.channel.send("This rank is already joinable.")
             } else {
-                joinableRanks.push(rankName)
+                joinableRanks.push(rankData)
                 db.get('guilds').find({id: msg.guild.id}).assign({joinableRanks}).write()
-                msg.channel.send("Rank has been added.")
+                msg.channel.send(`Rank has been added. [${rankData[0]}]`)
             }
         }).catch((e) => {
             console.log(e)
             msg.channel.send("That rank does not exist.")
         })
+    }
+    if(msgSplit[0] == '-join-rank') {
+        if(msgSplit[1] == undefined) {
+            msg.channel.send("Please supply a parameter.")
+            return
+        }
+        let rankName = msg.content.substr(11)
     }
     // development functions only
     if(msgSplit[0] == '-db-refresh') {
