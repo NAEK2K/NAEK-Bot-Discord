@@ -137,15 +137,17 @@ client.on('message', (msg) => {
     // development functions only
     if(msgSplit[0] == '-db-refresh') {
         db.get('guilds').remove({id: msg.guild.id}).write()
-        db.get('guilds').push({id: msg.guild.id, welcomeChannel: '', welcomeMessage: '', welcomeEnable: 1, goodbyeChannel: '', goodbyeMessage: '', goodbyeEnable: 1, joinableRanks: [], adminRanks: []}).write()
+        db.get('guilds').push({id: msg.guild.id, welcomeChannel: '', welcomeMessage: 'Hello <@user>', welcomeEnable: 0, goodbyeChannel: '', goodbyeMessage: 'Goodbye <@user>', goodbyeEnable: 0, joinableRanks: [], adminRanks: []}).write()
         msg.channel.send("Database has been refreshed.")
     }
 })
 
 // on member join
 client.on('guildMemberAdd', (member) => {
-    let welcomeChannel = db.get('guilds').find({id: member.guild.id}).get('welcomeChannel').value()
-    let welcomeMessage = db.get('guilds').find({id: member.guild.id}).get('welcomeMessage').value()
+    let guildData = db.get('guilds').find({id: member.guild.id}).value()
+    if(guildData.welcomeEnable == 0) return
+    let welcomeChannel = guildData.welcomeChannel
+    let welcomeMessage = guildData.welcomeMessage
     client.channels.fetch(welcomeChannel).then((channel) => {
         channel.send(welcomeMessage.toString().replace("<@user>", `<@${member.id}>`));
     }).catch(console.error);
@@ -153,8 +155,10 @@ client.on('guildMemberAdd', (member) => {
 
 // on member leave
 client.on('guildMemberRemove', (member) => {
-    let goodbyeChannel = db.get('guilds').find({id: member.guild.id}).get('goodbyeChannel').value()
-    let goodbyeMessage = db.get('guilds').find({id: member.guild.id}).get('goodbyeMessage').value()
+    let guildData = db.get('guilds').find({id: member.guild.id}).value()
+    if(guildData.goodbyeEnable == 0) return
+    let goodbyeChannel = guildData.goodbyeChannel
+    let goodbyeMessage = guildData.goodbyeMessage
     client.channels.fetch(goodbyeChannel).then((channel) => {
         channel.send(goodbyeMessage.toString().replace("<@user>", `<@${member.id}>`));
     }).catch(console.error);
