@@ -58,6 +58,34 @@ client.on('message', (msg) => {
             msg.channel.send("Invalid parameter. -set-goodbye (enable|disable)")
         }
     }
+    // rank management
+    if(msgSplit[0] == '-add-joinable-rank') {
+        let rankName = msg.content.substr(19)
+        msg.guild.roles.fetch().then((r) => {
+            let rankFound = false
+            r.cache.forEach((item) => { // loop through role cache to find role
+                if(item.name == rankName) {
+                    rankFound = true
+                    return
+                }
+            })
+            if(!rankFound) {
+                msg.channel.send("That rank does not exist.")
+                return
+            }
+            let joinableRanks = db.get('guilds').find({id: msg.guild.id}).get('joinableRanks').value()
+            if(joinableRanks.includes(rankName)) {
+                msg.channel.send("This rank is already joinable.")
+            } else {
+                joinableRanks.push(rankName)
+                db.get('guilds').find({id: msg.guild.id}).assign({joinableRanks}).write()
+                msg.channel.send("Rank has been added.")
+            }
+        }).catch((e) => {
+            console.log(e)
+            msg.channel.send("That rank does not exist.")
+        })
+    }
     // development functions only
     if(msgSplit[0] == '-db-refresh') {
         db.get('guilds').remove({id: msg.guild.id}).write()
