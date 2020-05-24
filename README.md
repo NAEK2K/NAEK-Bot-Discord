@@ -3,6 +3,6 @@
 Built with NodeJS, LowDB, and DiscordJS.
 
 Features:
-- Usable across multiple servers
-- Rank Management
-- Greetings / Goodbyes
+- Greetings / Goodbyes (COMPLETE)
+- Rank Management (NOT COMPLETE)
+- Usable across multiple servers (WHAT DO YOU CONSIDER COMPLETE)
